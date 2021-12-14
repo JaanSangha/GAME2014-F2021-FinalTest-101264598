@@ -13,11 +13,14 @@ public class GameController : MonoBehaviour
     [Header("Moving Platforms")] 
     public List<MovingPlatformController> movingPlatforms;
 
+    [Header("Floating Platforms")]
+    public List<FloatingPlatform> floatingPlatforms;
+
     // Start is called before the first frame update
     void Start()
     {
         movingPlatforms = FindObjectsOfType<MovingPlatformController>().ToList();
-
+        floatingPlatforms = FindObjectsOfType<FloatingPlatform>().ToList();
 
         // Kickoff the BulletManager
         BulletManager.Instance().Init(MaxBullets, enemyBulletType, playerBulletType);

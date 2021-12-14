@@ -97,7 +97,6 @@ public class PlayerBehaviour : MonoBehaviour
         _LookInFront();
         _isGroundBelow();
         _Move();
-
         if (isCameraShaking)
         {
             shakeTimer -= Time.deltaTime;
@@ -279,10 +278,15 @@ public class PlayerBehaviour : MonoBehaviour
         {
             TakeDamage(10);
         }
-
         if (other.gameObject.CompareTag("Moving Platform"))
         {
             other.gameObject.GetComponent<MovingPlatformController>().isActive = true;
+            transform.SetParent(other.gameObject.transform);
+        }
+        if (other.gameObject.CompareTag("Floating Platform"))
+        {
+            //Debug.Log("moving plat col");
+            other.gameObject.GetComponent<FloatingPlatform>().isActive = true;
             transform.SetParent(other.gameObject.transform);
         }
     }
@@ -291,7 +295,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Moving Platform"))
         {
-            other.gameObject.GetComponent<MovingPlatformController>().isActive = false;
+           // Debug.Log("moving plat col");
+            //other.gameObject.GetComponent<FloatingPlatform>().isActive = false;
             transform.SetParent(parent);
         }
     }
