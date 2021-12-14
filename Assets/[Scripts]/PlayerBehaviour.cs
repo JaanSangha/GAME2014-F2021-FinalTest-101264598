@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/* PlayerBehaviour.cs
+ * Jaan Sangha 101264598
+ * December 14th, 2021
+ * Edited class and called functions in FloatingPlatform.cs based on collision with it
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Unity.Mathematics;
@@ -283,6 +289,7 @@ public class PlayerBehaviour : MonoBehaviour
             other.gameObject.GetComponent<MovingPlatformController>().isActive = true;
             transform.SetParent(other.gameObject.transform);
         }
+        //check if colliding with floating platform and set it to be active if true
         if (other.gameObject.CompareTag("Floating Platform"))
         {
             other.gameObject.GetComponent<FloatingPlatform>().isActive = true;
@@ -298,6 +305,7 @@ public class PlayerBehaviour : MonoBehaviour
             other.gameObject.GetComponent<MovingPlatformController>().isActive = false;
             transform.SetParent(parent);
         }
+        //set floating platform unactive if collision stops
         if (other.gameObject.CompareTag("Floating Platform"))
         {
             other.gameObject.GetComponent<FloatingPlatform>().isActive = false;

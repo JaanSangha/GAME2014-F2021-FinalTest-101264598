@@ -1,3 +1,10 @@
+/* FloatingPlatform.cs
+ * Jaan Sangha 101264598
+ * December 14th, 2021
+ * created class and added shrinking and growing of platforms based on collision
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +42,7 @@ public class FloatingPlatform : MonoBehaviour
     {
         platformTimer += Time.deltaTime;
         _Move();
+        //if active shrink the platform by time multiplied by 0.3
         if (isActive)
         {
             platformResetTimer = 0;
@@ -46,6 +54,7 @@ public class FloatingPlatform : MonoBehaviour
         }
         else
         {
+            //if unactive make sure platform grows to normal size
             platformResetTimer += Time.deltaTime;
             if (platformResetTimer > 1.0f)
             {
@@ -59,11 +68,12 @@ public class FloatingPlatform : MonoBehaviour
   
     }
 
+    //play grow sound effect
     public void PlayGrow()
     {
         growSound.Play();
     }
-
+    //play shrink sound effect
     public void PlayShrink()
     {
         shrinkSound.Play();
