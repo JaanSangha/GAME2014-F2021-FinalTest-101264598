@@ -285,9 +285,9 @@ public class PlayerBehaviour : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Floating Platform"))
         {
-            //Debug.Log("moving plat col");
             other.gameObject.GetComponent<FloatingPlatform>().isActive = true;
-            transform.SetParent(other.gameObject.transform);
+            other.gameObject.GetComponent<FloatingPlatform>().PlayShrink();
+
         }
     }
 
@@ -295,9 +295,12 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Moving Platform"))
         {
-           // Debug.Log("moving plat col");
-            //other.gameObject.GetComponent<FloatingPlatform>().isActive = false;
+            other.gameObject.GetComponent<MovingPlatformController>().isActive = false;
             transform.SetParent(parent);
+        }
+        if (other.gameObject.CompareTag("Floating Platform"))
+        {
+            other.gameObject.GetComponent<FloatingPlatform>().isActive = false;
         }
     }
 
